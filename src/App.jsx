@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -15,14 +14,16 @@ import Loader from './components/Loader';
 import BookingConfirmation from './components/BookingConfirmation';
 import BookService from './components/BookService';
 import ScrollToTop from './components/ScrollToTop';
+import CallRequestForm from './components/CallRequestForm';
 
 function AppWrapper() {
   const location = useLocation();
   const hideHeaderFooter = ['/booking-confirmation', '/book-service'].includes(location.pathname);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-16">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 overflow-x-hidden to-white pt-5 sm:pt-16">
       <Helmet>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>Shan Enterprises Cool - Home</title>
         <meta name="description" content="Premier repair and maintenance services for A/C, Fridge, Washing Machine, Water Cooler, Stabilizer, and SS Aluminium in Noida." />
         <meta name="keywords" content="AC repair, fridge repair, washing machine repair, water cooler repair, stabilizer repair, SS aluminium, Noida" />
@@ -47,15 +48,18 @@ function AppWrapper() {
           path="/"
           element={
             <>
-              <div id="home"><Hero /></div>
-              <div id="services"><Services /></div>
-              <div id="about"><About /></div>
-              <div id="testimonials"><Testimonials /></div>
-              <div id="faq"><FAQ /></div>
-              <div id="contact"><Contact /></div>
+           <Hero />
+            <Services />
+            <About />
+            <Testimonials />
+            <FAQ />
+            <Contact />
             </>
           }
         />
+        <Route path="/services" element={<Services />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/call-request" element={<CallRequestForm />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
         <Route path="/book-service" element={<BookService />} />

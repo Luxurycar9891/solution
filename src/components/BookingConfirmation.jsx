@@ -6,7 +6,7 @@ function BookingConfirmation() {
   return (
     <section className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center py-20 px-4 sm:px-6">
       <Helmet>
-        <title>Booking Confirmed - Shan Enterprises Cool</title>
+        <title>Booking Confirmed - Shan Cool Enterprises</title>
         <meta
           name="description"
           content="Your booking with Shan Enterprises Cool has been successfully confirmed. We will contact you soon!"
@@ -41,7 +41,7 @@ function BookingConfirmation() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4"
         >
-          Booking Confirmed!
+          Service Booking Confirmed!
         </motion.h1>
 
         <motion.p
@@ -50,7 +50,7 @@ function BookingConfirmation() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="text-gray-600 text-base sm:text-lg font-light mb-8"
         >
-          Thank you for choosing <strong>Shan Enterprises Cool</strong>. Your request has been received. Our team will contact you shortly to finalize the appointment.
+          Thank you for choosing <strong>Shan Cool Enterprises</strong>. Your request has been received. Our team will contact you shortly to finalize the appointment.
         </motion.p>
 
         <motion.a

@@ -5,3 +5,10 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.swiper {
+     touch-action: pan-y;
+   }
+   a, button {
+     touch-action: manipulation;
+   }

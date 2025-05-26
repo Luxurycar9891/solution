@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Card,
@@ -7,17 +7,34 @@ import {
   Typography,
   CardMedia,
 } from '@mui/material';
-import { FaSnowflake, FaIceCream, FaWater, FaBolt, FaTools } from 'react-icons/fa';
-import { MdLocalLaundryService } from 'react-icons/md';  // Updated icon import
+import {
+  FaSnowflake,
+  FaIceCream,
+  FaWater,
+  FaBolt,
+  FaTools,
+} from 'react-icons/fa';
+import { MdLocalLaundryService } from 'react-icons/md';
 import { Helmet } from 'react-helmet-async';
 
 function Services() {
   const [selectedService, setSelectedService] = useState(null);
 
+  // Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedService(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const services = [
     {
       name: 'A/C Repair',
-      icon: <FaSnowflake className="text-4xl text-secondary animate-spin-slow" />,
+      icon: (
+        <FaSnowflake className="text-4xl text-secondary animate-spin-slow" />
+      ),
       image: '/service1.jpg',
       shortDesc: 'Comprehensive air conditioning solutions for homes and businesses.',
       fullDesc: (
@@ -30,14 +47,20 @@ function Services() {
             <li>Air filter cleaning and replacement</li>
             <li>24/7 emergency repair services</li>
           </ul>
-          <p className="mt-4">We service all major brands, ensuring your A/C runs efficiently year-round.</p>
+          <p className="mt-4">
+            We service all major brands, ensuring your A/C runs efficiently
+            year-round.
+          </p>
         </>
       ),
     },
     {
       name: 'Fridge Repair',
-      icon: <FaIceCream className="text-4xl text-secondary animate-bounce" />,
-      image: 'https://cdn.pixabay.com/photo/2018/11/04/13/29/hospitality-3793946_1280.jpg',
+      icon: (
+        <FaIceCream className="text-4xl text-secondary animate-bounce" />
+      ),
+      image:
+        'https://cdn.pixabay.com/photo/2018/11/04/13/29/hospitality-3793946_1280.jpg',
       shortDesc: 'Expert refrigerator repairs to keep your food fresh.',
       fullDesc: (
         <>
@@ -49,14 +72,20 @@ function Services() {
             <li>Door seal replacements</li>
             <li>Energy efficiency optimization</li>
           </ul>
-          <p className="mt-4">We handle single-door, double-door, and commercial refrigerators with precision.</p>
+          <p className="mt-4">
+            We handle single-door, double-door, and commercial refrigerators
+            with precision.
+          </p>
         </>
       ),
     },
     {
       name: 'Washing Machine Repair',
-      icon: <MdLocalLaundryService className="text-4xl text-secondary animate-spin-slow" />, // Fixed icon here
-      image: 'https://cdn.pixabay.com/photo/2016/10/31/18/50/washing-machine-1786385_1280.png',
+      icon: (
+        <MdLocalLaundryService className="text-4xl text-secondary animate-spin-slow" />
+      ),
+      image:
+        'https://cdn.pixabay.com/photo/2016/10/31/18/50/washing-machine-1786385_1280.png',
       shortDesc: 'Restore your washing machine to peak performance.',
       fullDesc: (
         <>
@@ -68,14 +97,19 @@ function Services() {
             <li>Belt and motor replacements</li>
             <li>Leak detection and repair</li>
           </ul>
-          <p className="mt-4">We service both front-load and top-load machines for all brands.</p>
+          <p className="mt-4">
+            We service both front-load and top-load machines for all brands.
+          </p>
         </>
       ),
     },
     {
       name: 'Water Cooler Repair',
-      icon: <FaWater className="text-4xl text-secondary animate-bounce" />,
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt7rNpVW5iEzXTq59FGkdwS0U4J3wvgB0gHw&s',
+      icon: (
+        <FaWater className="text-4xl text-secondary animate-bounce" />
+      ),
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt7rNpVW5iEzXTq59FGkdwS0U4J3wvgB0gHw&s',
       shortDesc: 'Reliable water cooler maintenance for clean, cold water.',
       fullDesc: (
         <>
@@ -87,14 +121,18 @@ function Services() {
             <li>Thermostat adjustments</li>
             <li>Leak detection and repair</li>
           </ul>
-          <p className="mt-4">Ensure your water cooler delivers safe and refreshing water every time.</p>
+          <p className="mt-4">
+            Ensure your water cooler delivers safe and refreshing water every
+            time.
+          </p>
         </>
       ),
     },
     {
       name: 'Stabilizer Repair',
       icon: <FaBolt className="text-4xl text-secondary animate-pulse" />,
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLcE8cMG-Bd8kXUiPZbQahuYot86eaHANgfQ&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMKsnw4pY49VEpUWmZNO0zGxaCvCznvyQt9Q&s',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLcE8cMG-Bd8kXUiPZbQahuYot86eaHANgfQ&s',
       shortDesc: 'Protect your appliances with our stabilizer repair services.',
       fullDesc: (
         <>
@@ -106,15 +144,21 @@ function Services() {
             <li>Compatibility checks for appliances</li>
             <li>Preventive maintenance</li>
           </ul>
-          <p className="mt-4">Keep your appliances safe from power surges with our expert repairs.</p>
+          <p className="mt-4">
+            Keep your appliances safe from power surges with our expert repairs.
+          </p>
         </>
       ),
     },
     {
       name: 'SS Aluminium Services',
-      icon: <FaTools className="text-4xl text-secondary animate-spin-slow" />,
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWskG8DCIrcfZ-yqud-SiLT9UpEAewFk_7PA&s',
-      shortDesc: 'Custom fabrication and repair for stainless steel and aluminium.',
+      icon: (
+        <FaTools className="text-4xl text-secondary animate-spin-slow" />
+      ),
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWskG8DCIrcfZ-yqud-SiLT9UpEAewFk_7PA&s',
+      shortDesc:
+        'Custom fabrication and repair for stainless steel and aluminium.',
       fullDesc: (
         <>
           <p>Our SS and aluminium services include:</p>
@@ -125,18 +169,25 @@ function Services() {
             <li>Design consultation for aesthetic appeal</li>
             <li>Durable coating applications</li>
           </ul>
-          <p className="mt-4">We deliver high-quality, long-lasting solutions for residential and commercial needs.</p>
+          <p className="mt-4">
+            We deliver high-quality, long-lasting solutions for residential and
+            commercial needs.
+          </p>
         </>
       ),
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100">
       <Helmet>
-        <title>Services - Shan Enterprises Cool</title>
-        <meta name="description" content="Explore our comprehensive repair services for A/C, Fridge, Washing Machine, Water Cooler, Stabilizer, and SS Aluminium in Mumbai." />
+        <title>Services - Shan Cool Enterprises</title>
+        <meta
+          name="description"
+          content="Explore our comprehensive repair services for A/C, Fridge, Washing Machine, Water Cooler, Stabilizer, and SS Aluminium in Noida."
+        />
       </Helmet>
+
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
@@ -147,6 +198,7 @@ function Services() {
           Our Premium Services
           <span className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-24 h-1 bg-gradient-to-r from-secondary to-accent rounded-full"></span>
         </motion.h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -156,7 +208,10 @@ function Services() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
               className="cursor-pointer"
-              onClick={() => setSelectedService(service)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedService(service);
+              }}
             >
               <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white rounded-xl overflow-hidden">
                 <div className="relative border-4 border-transparent rounded-xl bg-gradient-to-r from-secondary to-accent p-1">
@@ -180,7 +235,9 @@ function Services() {
                       }
                     />
                     <CardContent>
-                      <p className="text-gray-600 font-light">{service.shortDesc}</p>
+                      <p className="text-gray-600 font-light">
+                        {service.shortDesc}
+                      </p>
                     </CardContent>
                   </div>
                 </div>
@@ -189,13 +246,14 @@ function Services() {
           ))}
         </div>
 
-        {/* Modal for full description */}
         {selectedService && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
+            role="dialog"
+            aria-modal="true"
             onClick={() => setSelectedService(null)}
           >
             <Card
@@ -211,7 +269,9 @@ function Services() {
                 }
               />
               <CardContent>
-                <div className="text-gray-700 text-sm">{selectedService.fullDesc}</div>
+                <div className="text-gray-700 text-sm">
+                  {selectedService.fullDesc}
+                </div>
                 <button
                   className="mt-6 bg-accent text-white px-6 py-3 rounded-full hover:bg-green-600 hover:scale-105 transform transition-all duration-300 shadow-md"
                   onClick={() => setSelectedService(null)}

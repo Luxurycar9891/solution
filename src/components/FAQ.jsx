@@ -22,10 +22,10 @@ function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section className="py-20 bg-white">
       <Helmet>
         <title>FAQ - Shan Enterprises Cool</title>
-        <meta name="description" content="Find answers to common questions about Shan Enterprises Cool's appliance repair services in Mumbai." />
+        <meta name="description" content="Find answers to common questions about Shan Enterprises Cool's appliance repair services in Noida." />
       </Helmet>
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2

@@ -10,7 +10,7 @@ function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-r from-primary to-blue-800 text-white">
+    <section  className="py-20 bg-gradient-to-r from-primary to-blue-800 text-white">
       <Helmet>
         <title>About Us - Shan Enterprises Cool</title>
         <meta name="description" content="Learn more about Shan Enterprises Cool, Noida's leading appliance repair and maintenance service provider with over a decade of experience." />

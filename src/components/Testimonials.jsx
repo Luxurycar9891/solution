@@ -11,7 +11,7 @@ function Testimonials() {
   const testimonials = [
     {
       name: 'Shahe Aalam',
-      feedback: 'Shan Enterprises Cool fixed my A/C in no time! Professional service and great pricing. Highly recommend!',
+      feedback: 'Shan Cool Enterprises  fixed my A/C in no time! Professional service and great pricing. Highly recommend!',
       rating: 5,
     },
     {
@@ -27,10 +27,10 @@ function Testimonials() {
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-gray-100 to-gray-50">
+    <section className="py-20 bg-gradient-to-b from-gray-100 to-gray-50">
       <Helmet>
-        <title>Testimonials - Shan Enterprises Cool</title>
-        <meta name="description" content="Read what our happy clients say about Shan Enterprises Cool's appliance repair services in Noida." />
+        <title>Testimonials - Shan Cool Enterprises</title>
+        <meta name="description" content="Read what our happy clients say about Shan Cool's Enterprises appliance repair services in Noida." />
       </Helmet>
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
@@ -51,6 +51,15 @@ function Testimonials() {
           breakpoints={{
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
+          }}
+          style={{ touchAction: 'pan-y' }}
+          onTouchStart={(swiper, event) => {
+            if (event.target.closest('a')) {
+              swiper.allowTouchMove = false;
+            }
+          }}
+          onTouchEnd={(swiper) => {
+            swiper.allowTouchMove = true;
           }}
         >
           {testimonials.map((testimonial, index) => (

@@ -22,9 +22,15 @@ function CallRequestForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     emailjs
-      .send('service_8lh8dup', 'template_1mlvzr8', formData, 'Q48KG0BI_mnJGYkag')
+      .send(
+        'service_8lh8dup',
+        'template_1mlvzr8',
+        formData,
+        'Q48KG0BI_mnJGYkag'
+      )
       .then(() => {
         setSuccess(true);
         setTimeout(() => {
@@ -38,14 +44,18 @@ function CallRequestForm() {
   };
 
   return (
-    <section id="call-request" className="py-12 bg-gradient-to-r from-primary to-blue-800 text-white">
+    <section
+      id="call-request"
+      className="py-12 bg-gradient-to-r from-primary to-blue-800 text-white"
+    >
       <Helmet>
-        <title> Shan Enterprises Cool</title>
+        <title>Request Call Back - Shan Cool Enterprises</title>
         <meta
           name="description"
-          content="Request a call back from Shan Enterprises Cool for appliance repair services in Mumbai."
+          content="Request a call back from Shan Cool Enterprises for expert repair services in Noida. Quick and reliable support."
         />
       </Helmet>
+
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
@@ -56,6 +66,7 @@ function CallRequestForm() {
           Request a Call Back
           <span className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-16 h-1 bg-secondary rounded-full"></span>
         </motion.h2>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -69,7 +80,9 @@ function CallRequestForm() {
               transition={{ duration: 0.5 }}
               className="text-center text-white"
             >
-              <h3 className="text-xl font-semibold mb-2">Request Sent Successfully!</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                Request Sent Successfully!
+              </h3>
               <p>We'll get back to you shortly. Redirecting...</p>
             </motion.div>
           ) : (
@@ -105,18 +118,30 @@ function CallRequestForm() {
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full p-3 bg-white bg-opacity-20 rounded-md text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary"
+                className="w-full p-3 bg-white bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-secondary"
                 required
               >
                 <option value="" disabled className="text-gray-300">
                   Select a Service
                 </option>
-                <option value="A/C Repair" className="text-black">A/C Repair</option>
-                <option value="Fridge Repair" className="text-black">Fridge Repair</option>
-                <option value="Washing Machine Repair" className="text-black">Washing Machine Repair</option>
-                <option value="Water Cooler Repair" className="text-black">Water Cooler Repair</option>
-                <option value="Stabilizer Repair" className="text-black">Stabilizer Repair</option>
-                <option value="SS Aluminium Services" className="text-black">SS Aluminium Services</option>
+                <option value="A/C Repair" className="text-black">
+                  A/C Repair
+                </option>
+                <option value="Fridge Repair" className="text-black">
+                  Fridge Repair
+                </option>
+                <option value="Washing Machine Repair" className="text-black">
+                  Washing Machine Repair
+                </option>
+                <option value="Water Cooler Repair" className="text-black">
+                  Water Cooler Repair
+                </option>
+                <option value="Stabilizer Repair" className="text-black">
+                  Stabilizer Repair
+                </option>
+                <option value="SS Aluminium Services" className="text-black">
+                  SS Aluminium Services
+                </option>
               </select>
               <textarea
                 name="message"

@@ -5,8 +5,8 @@ function Terms() {
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white min-h-screen">
       <Helmet>
-        <title>Terms of Service - Shan Enterprises Cool</title>
-        <meta name="description" content="Read the terms of service for Shan Enterprises Cool's appliance repair services in Mumbai." />
+        <title>Terms of Service - Shan Cool Enterprises</title>
+        <meta name="description" content="Read the terms of service for Shan Cool's Enterprises appliance repair services in Noida." />
       </Helmet>
       <div className="max-w-4xl mx-auto px-4">
         <motion.h1
@@ -26,7 +26,7 @@ function Terms() {
         >
           <h2 className="text-2xl font-semibold mb-4 text-primary">1. Introduction</h2>
           <p className="text-gray-600 font-light mb-6">
-            Welcome to Shan Enterprises Cool. By using our services, you agree to comply with and be bound by the following terms and conditions.
+            Welcome to Shan Cool Enterprises. By using our services, you agree to comply with and be bound by the following terms and conditions.
           </p>
           <h2 className="text-2xl font-semibold mb-4 text-primary">2. Services</h2>
           <p className="text-gray-600 font-light mb-6">

@@ -1,14 +1,8 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import {
-  FaPhone,
-  FaEnvelope,
-  FaWhatsapp,
-  FaClock,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
-import { Helmet } from "react-helmet-async";
-import CallRequestForm from "./CallRequestForm";
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { FaPhone, FaEnvelope, FaWhatsapp, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
+import CallRequestForm from './CallRequestForm';
 
 function Contact() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -18,28 +12,25 @@ function Contact() {
     return () => clearInterval(timer);
   }, []);
 
-  const istTime = currentTime.toLocaleString("en-US", {
-    timeZone: "Asia/Kolkata",
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
+  const istTime = currentTime.toLocaleString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
     hour12: true,
   });
 
   return (
-    <section
-      id="contact"
-      className="py-20 bg-gradient-to-br from-white via-gray-100 to-white"
-    >
+    <section className="py-5 bg-gradient-to-br from-white via-gray-100 to-white">
       <Helmet>
-        <title>Contact Us - Shan Enterprises Cool</title>
+        <title>Contact Us - Shan Cool Enterprises</title>
         <meta
           name="description"
-          content="Contact Shan Enterprises Cool in Noida Sector-58 for premium appliance services. Call, Email, or WhatsApp us today."
+          content="Contact Shan Cool Enterprises in Noida Sector-58 for premium appliance services. Call, Email, or WhatsApp us today."
         />
       </Helmet>
 
@@ -55,7 +46,6 @@ function Contact() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -72,6 +62,7 @@ function Contact() {
                 <a
                   href="tel:+917017091166"
                   className="hover:text-accent font-medium"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   +91 7017091166
                 </a>
@@ -81,11 +72,11 @@ function Contact() {
                 <a
                   href="mailto:shanenterprisescool@gmail.com"
                   className="hover:text-accent font-medium"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   shanenterprisescool@gmail.com
                 </a>
               </p>
-
               <p className="flex items-center">
                 <FaWhatsapp className="mr-3 text-green-500 animate-bounce" />
                 <a
@@ -93,12 +84,13 @@ function Contact() {
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-accent font-medium"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   WhatsApp Us
                 </a>
               </p>
               <p className="flex items-center">
-                <FaClock className="mr-3 text-secondary animate-pulse" />{" "}
+                <FaClock className="mr-3 text-secondary animate-pulse" />
                 {istTime}
               </p>
               <p className="flex items-start">
@@ -125,12 +117,11 @@ function Contact() {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white p-8 rounded-3xl shadow-2xl border border-gray-100"
+            className="bg-white p-1 rounded-3xl shadow-2xl border border-gray-100"
           >
             <h3 className="text-3xl font-semibold mb-6 text-center text-primary">
               Send a Message

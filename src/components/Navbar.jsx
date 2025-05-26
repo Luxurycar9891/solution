@@ -1,81 +1,80 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/Home';
 import BuildIcon from '@mui/icons-material/Build';
 import InfoIcon from '@mui/icons-material/Info';
-import StarIcon from '@mui/icons-material/Star';
-import HelpIcon from '@mui/icons-material/Help';
 import PhoneIcon from '@mui/icons-material/Phone';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
 import { IconButton } from '@mui/material';
 import logo from '../../public/logo.jpeg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  useEffect(() => {
-    // Lock body scroll when menu is open
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-  }, [isOpen]);
+  const menuRef = useRef();
 
   const navLinks = [
-    { name: 'Home', id: 'home', icon: <HomeIcon /> },
-    { name: 'Services', id: 'services', icon: <BuildIcon /> },
-    { name: 'About', id: 'about', icon: <InfoIcon /> },
-    { name: 'Reviews', id: 'testimonials', icon: <StarIcon /> },
-    { name: 'FAQ', id: 'faq', icon: <HelpIcon /> },
-    { name: 'Call Request', id: 'call-request', icon: <PhoneIcon /> },
-    { name: 'Contact', id: 'contact', icon: <ContactMailIcon /> },
+    { name: 'Home', to: '/', icon: <HomeIcon /> },
+    { name: 'Services', to: '/services', icon: <BuildIcon /> },
+    { name: 'About', to: '/about', icon: <InfoIcon /> },
+    { name: 'Call Request', to: '/call-request', icon: <PhoneIcon /> },
   ];
 
-  const handleScroll = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -80; // Adjust if your navbar height changes
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  // Close menu on outside click/touch
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
 
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      setIsOpen(false);
-    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
+
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setIsOpen((prev) => !prev);
   };
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50 top-0">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
-          <div
-            className="flex-shrink-0 cursor-pointer"
-            onClick={() => handleScroll('home')}
-            aria-label="Shan Enterprises Cool Logo"
-          >
-            <img src={logo} alt="Shan Enterprises Cool Logo" className="h-12 w-auto" />
+    <nav className="bg-gradient-to-r from-blue-900 to-indigo-900 shadow-xl fixed w-full z-[2000] top-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-14 items-center">
+          <div className="flex-shrink-0">
+            <Link to="/" aria-label="Shan Enterprises Logo">
+              <img 
+                src={logo} 
+                alt="Shan Enterprises Logo" 
+                className="h-10 w-auto rounded-full border-2 border-white/20 sm:h-12"
+              />
+            </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8 items-center font-semibold text-gray-700">
+          {/* Desktop Links */}
+          <div className="hidden md:flex space-x-4 items-center font-semibold text-white">
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleScroll(link.id)}
-                className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300 text-lg"
+              <Link
+                key={link.to}
+                to={link.to}
+                className="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-300 text-sm md:text-base"
                 aria-label={link.name}
               >
                 {link.icon}
                 {link.name}
-              </button>
+              </Link>
             ))}
           </div>
 
-          {/* Mobile Hamburger Menu */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
-            <IconButton onClick={toggleMenu} color="inherit" aria-label="Toggle menu">
+            <IconButton onClick={toggleMenu} aria-label="Toggle menu" className="!text-white">
               {isOpen ? <CloseIcon fontSize="large" /> : <MenuIcon fontSize="large" />}
             </IconButton>
           </div>
@@ -84,22 +83,26 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <motion.div
-        className="md:hidden bg-white shadow-lg border-t border-gray-200"
+        ref={menuRef}
+        className={`md:hidden overflow-hidden bg-gradient-to-b from-blue-900 to-indigo-900 shadow-lg ${
+          isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="flex flex-col px-4 py-4 space-y-2">
+        <div className="flex flex-col px-4 py-4 space-y-3">
           {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => handleScroll(link.id)}
-              className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition-colors duration-300 text-base font-medium"
+            <Link
+              key={link.to}
+              to={link.to}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-white hover:bg-white/10 hover:text-blue-300 transition-all duration-300 text-base font-medium"
               aria-label={link.name}
             >
               {link.icon}
               {link.name}
-            </button>
+            </Link>
           ))}
         </div>
       </motion.div>
