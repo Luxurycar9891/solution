@@ -127,6 +127,9 @@ function CallRequestForm() {
                 <option value="A/C Repair" className="text-black">
                   A/C Repair
                 </option>
+                <option value="A/C Rent" className="text-black">
+                  A/C For Rent
+                </option>
                 <option value="Fridge Repair" className="text-black">
                   Fridge Repair
                 </option>

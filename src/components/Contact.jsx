@@ -60,27 +60,27 @@ function Contact() {
               <p className="flex items-center">
                 <FaPhone className="mr-3 text-secondary" />
                 <a
-                  href="tel:+917017091166"
+                  href="tel:+917037918018"
                   className="hover:text-accent font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  +91 7017091166
+                  +91 7037918018
                 </a>
               </p>
               <p className="flex items-center">
                 <FaEnvelope className="mr-3 text-secondary" />
                 <a
-                  href="mailto:shanenterprisescool@gmail.com"
+                  href="mailto:Khanmurtaza524@gmail.com"
                   className="hover:text-accent font-medium"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  shanenterprisescool@gmail.com
+                  Khanmurtaza524@gmail.com
                 </a>
               </p>
               <p className="flex items-center">
                 <FaWhatsapp className="mr-3 text-green-500 animate-bounce" />
                 <a
-                  href="https://wa.me/917017091166"
+                  href="https://wa.me/917037918018"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-accent font-medium"

@@ -41,7 +41,7 @@ function BookingConfirmation() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4"
         >
-          Service Booking Confirmed!
+          Call Request Submitted!
         </motion.h1>
 
         <motion.p

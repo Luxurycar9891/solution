@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { motion } from 'framer-motion';
+import { FaWhatsapp } from 'react-icons/fa';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -24,7 +26,7 @@ function AppWrapper() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 overflow-x-hidden to-white pt-5 sm:pt-16">
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <title>Shan Enterprises Cool - Home</title>
+        <title>Shan Cool Enterprises - Home</title>
         <meta name="description" content="Premier repair and maintenance services for A/C, Fridge, Washing Machine, Water Cooler, Stabilizer, and SS Aluminium in Noida." />
         <meta name="keywords" content="AC repair, fridge repair, washing machine repair, water cooler repair, stabilizer repair, SS aluminium, Noida" />
         <script type="application/ld+json">
@@ -48,12 +50,12 @@ function AppWrapper() {
           path="/"
           element={
             <>
-           <Hero />
-            <Services />
-            <About />
-            <Testimonials />
-            <FAQ />
-            <Contact />
+              <Hero />
+              <Services />
+              <About />
+              <Testimonials />
+              <FAQ />
+              <Contact />
             </>
           }
         />
@@ -64,7 +66,24 @@ function AppWrapper() {
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
         <Route path="/book-service" element={<BookService />} />
       </Routes>
-      {!hideHeaderFooter && <Footer />}
+      {!hideHeaderFooter && (
+        <>
+          <Footer />
+          <motion.a
+          href="https://wa.me/917037918018"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
+            whileHover={{ scale: 1.1, boxShadow: '0 8px 16px rgba(0,0,0,0.2)' }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FaWhatsapp className="text-3xl" />
+          </motion.a>
+        </>
+      )}
     </div>
   );
 }

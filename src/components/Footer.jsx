@@ -19,7 +19,7 @@ function Footer() {
             "contactPoint": [
               {
                 "@type": "ContactPoint",
-                "telephone": "+918287656331",
+                "telephone": "+917037918018",
                 "contactType": "Customer Service",
                 "areaServed": "IN",
                 "availableLanguage": ["English", "Hindi"]
@@ -60,17 +60,16 @@ function Footer() {
           <h4 className="text-lg font-semibold text-white">Contact Info</h4>
           <p className="flex items-center text-gray-300 gap-2">
             <FaPhone className="text-blue-400" />
-            <a href="tel:+918287656331" className="hover:text-blue-300">+91 82876 56331</a>
+            <a href="tel:+917037918018" className="hover:text-blue-300">+91 7037918018</a>
           </p>
           <p className="flex items-center text-gray-300 gap-2">
             <FaEnvelope className="text-blue-400" />
-            <a href="mailto:shanenterprisescool@gmail.com" className="hover:text-blue-300">
-              shanenterprisescool@gmail.com
-            </a>
+            <a href="mailto:Khanmurtaza524@gmail.com" className="hover:text-blue-300">
+             Khanmurtaza524@gmail.com</a>
           </p>
           <p className="flex items-center text-gray-300 gap-2">
             <FaWhatsapp className="text-green-400 animate-bounce" />
-            <a href="https://wa.me/918287656331" target="_blank" rel="noreferrer" className="hover:text-blue-300">
+            <a href="https://wa.me/917037918018" target="_blank" rel="noreferrer" className="hover:text-blue-300">
               WhatsApp Us
             </a>
           </p>

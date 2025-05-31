@@ -59,7 +59,7 @@ function HeroSlide({ slide }) {
             <p className="text-sm sm:text-base font-light mt-2 drop-shadow-md">{slide.desc}</p>
 
             <Link
-              to="/book-service"
+              to="/services"
               className="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full shadow-lg text-sm transition transform hover:scale-105"
             >
               Book Service Now
