@@ -68,6 +68,16 @@ function Contact() {
                 </a>
               </p>
               <p className="flex items-center">
+                <FaPhone className="mr-3 text-secondary" />
+                <a
+                  href="tel:+919761444411"
+                  className="hover:text-accent font-medium"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  +91 9761444411
+                </a>
+              </p>
+              <p className="flex items-center">
                 <FaEnvelope className="mr-3 text-secondary" />
                 <a
                   href="mailto:Khanmurtaza524@gmail.com"
@@ -80,7 +90,7 @@ function Contact() {
               <p className="flex items-center">
                 <FaWhatsapp className="mr-3 text-green-500 animate-bounce" />
                 <a
-                  href="https://wa.me/917037918018"
+                  href="https://wa.me/919761444411"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-accent font-medium"

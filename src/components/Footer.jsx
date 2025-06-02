@@ -14,7 +14,7 @@ function Footer() {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Shan Cool Enterprises",
-            "url": "https://www.shanenterprisescool.com",
+            "url": "https://www.acrepairing.in",
             "logo": "/logo.png",
             "contactPoint": [
               {
@@ -62,6 +62,11 @@ function Footer() {
             <FaPhone className="text-blue-400" />
             <a href="tel:+917037918018" className="hover:text-blue-300">+91 7037918018</a>
           </p>
+          <p className="flex items-center text-gray-300 gap-2">
+            <FaPhone className="text-blue-400" />
+            <a href="tel:+919761444411" className="hover:text-blue-300">+91 9761444411</a>
+          </p>
+          
           <p className="flex items-center text-gray-300 gap-2">
             <FaEnvelope className="text-blue-400" />
             <a href="mailto:Khanmurtaza524@gmail.com" className="hover:text-blue-300">

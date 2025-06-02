@@ -47,7 +47,6 @@ function HeroSlide({ slide }) {
       {loaded && (
         <div
           className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 flex items-center justify-center px-4"
-          // pointerEvents removed so clicks work on mobile
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}

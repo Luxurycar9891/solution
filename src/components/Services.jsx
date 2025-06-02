@@ -414,226 +414,229 @@ function Services() {
           </motion.div>
         )}
 
-        {showBookingForm && (
-          <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
-            onClick={() => {
-              setShowBookingForm(null);
-              setSuccess(false);
-              setIsLoading(false);
-            }}
-          >
-            <Card
-              className="w-full max-w-2xl lg:max-w-[480px] bg-white rounded-2xl shadow-2xl p-6 relative"
-              onClick={(e) => e.stopPropagation()}
+{showBookingForm && (
+  <motion.div
+    initial={{ opacity: 0, y: 100 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 100 }}
+    transition={{ duration: 0.4, ease: 'easeInOut' }}
+    className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-30 p-2 sm:p-4"
+    onClick={() => {
+      setShowBookingForm(null);
+      setSuccess(false);
+      setIsLoading(false);
+    }}
+  >
+    <Card
+      className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-xl xl:max-w-2xl bg-white max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl p-4 md:p-6 relative scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-blue-100"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <IconButton
+        className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
+        onClick={() => {
+          setShowBookingForm(null);
+          setSuccess(false);
+          setIsLoading(false);
+        }}
+      >
+        <FaTimes />
+      </IconButton>
+
+      <CardHeader
+        title={
+          <div className="flex items-center gap-3 text-xl md:text-2xl font-bold text-blue-900">
+            {showBookingForm.icon}
+            <span>Book {showBookingForm.name}</span>
+          </div>
+        }
+      />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4 }}
+      >
+        <CardMedia
+          component="img"
+          height="140"
+          image={showBookingForm.image}
+          alt={`${showBookingForm.name} Service`}
+          className="object-cover h-28 md:h-32 w-36 md:w-40 rounded-xl mb-2 shadow-sm"
+          loading="lazy"
+        />
+      </motion.div>
+
+      <CardContent className="flex flex-col gap-2">
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <motion.div
+              key="loading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7, ease: 'easeInOut' }}
+              className="flex flex-col items-center justify-center h-64"
             >
-              <IconButton
-                className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
-                onClick={() => {
-                  setShowBookingForm(null);
-                  setSuccess(false);
-                  setIsLoading(false);
-                }}
-              >
-                <FaTimes />
-              </IconButton>
-              <CardHeader
-                title={
-                  <div className="flex items-center gap-3 text-2xl font-bold text-blue-900">
-                    {showBookingForm.icon}
-                    <span>Book {showBookingForm.name}</span>
-                  </div>
-                }
+              <CircularProgress size={60} className="text-blue-600" />
+              <p className="mt-4 text-gray-600 font-medium text-sm md:text-base">
+                Processing your booking...
+              </p>
+            </motion.div>
+          ) : success ? (
+  <motion.div
+    key="success"
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, ease: 'easeOut' }}
+    className="text-center relative overflow-hidden px-2 sm:px-4"
+  >
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="absolute inset-0 bg-gradient-to-r from-blue-100 to-green-100 opacity-40 rounded-xl"
+    />
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="relative z-10"
+    >
+      <FaCheckCircle className="text-5xl md:text-6xl text-green-600 mx-auto mb-3 md:mb-4 animate-pulse" />
+      <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2 drop-shadow-sm">
+        Booking Confirmed!
+      </h3>
+      <p className="text-gray-700 mb-4 text-sm md:text-base leading-relaxed">
+        Thank you for choosing Shan Cool Enterprises. Our team will reach out to you shortly.
+      </p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+        className="bg-white p-3 md:p-4 rounded-xl shadow border border-blue-100 text-left text-sm text-gray-700 space-y-1 mb-5"
+      >
+        <p><strong>Name:</strong> {formData.name}</p>
+        <p><strong>Email:</strong> {formData.email}</p>
+        <p><strong>Phone:</strong> {formData.phone}</p>
+        <p><strong>Address:</strong> {formData.address}</p>
+        <p><strong>Service:</strong> {formData.service}</p>
+        {formData.rentalDuration && <p><strong>Rental Duration:</strong> {formData.rentalDuration}</p>}
+        {formData.message && <p><strong>Message:</strong> {formData.message}</p>}
+      </motion.div>
+
+      <motion.button
+        whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+        whileTap={{ scale: 0.95 }}
+        className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow font-medium"
+        onClick={handleCloseSuccess}
+      >
+        Done
+      </motion.button>
+    </motion.div>
+  </motion.div>
+) : (
+            <motion.form
+              key="form"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              onSubmit={handleFormSubmit}
+              className="space-y-2 md:space-y-2"
+            >
+              <motion.input
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleFormChange}
+                placeholder="Your Name"
+                className="w-full p-2.5 md:p-2 text-sm md:text-base border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                required
               />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
+              <motion.input
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleFormChange}
+                placeholder="Your Email"
+                className="w-full p-2.5 md:p-2 text-sm md:text-base border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                required
+              />
+              <motion.input
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleFormChange}
+                placeholder="Your Phone Number"
+                className="w-full p-2.5 md:p-2 text-sm md:text-base border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                required
+              />
+              <motion.input
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleFormChange}
+                placeholder="Your Address"
+                className="w-full p-2.5 md:p-2 text-sm md:text-base border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                required
+              />
+              {showBookingForm.name === 'AC for Rent' && (
+                <motion.select
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  name="rentalDuration"
+                  value={formData.rentalDuration}
+                  onChange={handleFormChange}
+                  className="w-full p-2.5 md:p-2 text-sm md:text-base border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                  required
+                >
+                  <option value="" disabled>Select Rental Duration</option>
+                  <option value="1 Season">1 Season</option>
+                  <option value="2 Seasons">2 Seasons</option>
+                </motion.select>
+              )}
+              <motion.textarea
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+                name="message"
+                value={formData.message}
+                onChange={handleFormChange}
+                placeholder="Your Message (Optional)"
+                className="w-full p-2.5 md:p-2 text-sm md:text-base border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 h-20 transition-all duration-200"
+              />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white p-3 rounded-lg hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={showBookingForm.image}
-                  alt={`${showBookingForm.name} Service`}
-                  className="object-cover h-36 w-full rounded-xl mb-4 shadow-sm"
-                  loading="lazy"
-                />
-              </motion.div>
-              <CardContent>
-                <AnimatePresence mode="wait">
-                  {isLoading ? (
-                    <motion.div
-                      key="loading"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.7, ease: 'easeInOut' }}
-                      className="flex flex-col items-center justify-center h-64"
-                    >
-                      <CircularProgress
-                        size={60}
-                        className="text-blue-600"
-                      />
-                      <p className="mt-4 text-gray-600 font-medium">
-                        Processing your booking...
-                      </p>
-                    </motion.div>
-                  ) : success ? (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, ease: 'easeOut' }}
-                      className="text-center relative overflow-hidden"
-                    >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.8, ease: 'easeOut' }}
-                        className="absolute inset-0 bg-gradient-to-r from-blue-100 to-green-100 opacity-50 rounded-xl"
-                      />
-                      <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                      >
-                        <FaCheckCircle className="text-6xl text-green-600 mx-auto mb-4 animate-bounce" />
-                        <h3 className="text-2xl font-bold text-blue-900 mb-2 drop-shadow-sm">
-                          Booking Confirmed!
-                        </h3>
-                        <p className="text-gray-600 mb-6 text-sm">
-                          Thank you for choosing Shan Cool Enterprises. Our team will reach out to you shortly.
-                        </p>
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.3 }}
-                          className="bg-white p-4 rounded-xl shadow-md border border-blue-100 text-left text-sm text-gray-700"
-                        >
-                          <p><strong>Name:</strong> {formData.name}</p>
-                          <p><strong>Email:</strong> {formData.email}</p>
-                          <p><strong>Phone:</strong> {formData.phone}</p>
-                          <p><strong>Address:</strong> {formData.address}</p>
-                          <p><strong>Service:</strong> {formData.service}</p>
-                          {formData.rentalDuration && <p><strong>Rental Duration:</strong> {formData.rentalDuration}</p>}
-                          {formData.message && <p><strong>Message:</strong> {formData.message}</p>}
-                        </motion.div>
-                        <motion.button
-                          whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
-                          whileTap={{ scale: 0.95 }}
-                          className="mt-6 bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-2 rounded-full hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-md font-medium"
-                          onClick={handleCloseSuccess}
-                        >
-                          Done
-                        </motion.button>
-                      </motion.div>
-                    </motion.div>
-                  ) : (
-                    <motion.form
-                      key="form"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4 }}
-                      onSubmit={handleFormSubmit}
-                      className="space-y-3"
-                    >
-                      <motion.input
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleFormChange}
-                        placeholder="Your Name"
-                        className="w-full p-3 border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                        required
-                      />
-                      <motion.input
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.15 }}
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleFormChange}
-                        placeholder="Your Email"
-                        className="w-full p-3 border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                        required
-                      />
-                      <motion.input
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleFormChange}
-                        placeholder="Your Phone Number"
-                        className="w-full p-3 border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                        required
-                      />
-                      <motion.input
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.25 }}
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleFormChange}
-                        placeholder="Your Address"
-                        className="w-full p-3 border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                        required
-                      />
-                      {showBookingForm.name === 'AC for Rent' && (
-                        <motion.select
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: 0.3 }}
-                          name="rentalDuration"
-                          value={formData.rentalDuration}
-                          onChange={handleFormChange}
-                          className="w-full p-3 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                          required
-                        >
-                          <option value="" disabled>
-                            Select Rental Duration
-                          </option>
-                          <option value="1 Season">1 Season</option>
-                          <option value="2 Seasons">2 Seasons</option>
-                        </motion.select>
-                      )}
-                      <motion.textarea
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.35 }}
-                        name="message"
-                        value={formData.message}
-                        onChange={handleFormChange}
-                        placeholder="Your Message (Optional)"
-                        className="w-full p-3 border border-gray-200 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 h-20 transition-all duration-200"
-                      />
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white p-3 rounded-lg hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        Submit Booking
-                      </motion.button>
-                    </motion.form>
-                  )}
-                </AnimatePresence>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
+                Submit Booking
+              </motion.button>
+            </motion.form>
+          )}
+        </AnimatePresence>
+      </CardContent>
+    </Card>
+  </motion.div>
+)}
+
+
       </div>
     </section>
   );

@@ -49,7 +49,7 @@ function CallRequestForm() {
       className="py-12 bg-gradient-to-r from-primary to-blue-800 text-white"
     >
       <Helmet>
-        <title>Request Call Back - Shan Cool Enterprises</title>
+        <title>Shan Cool Enterprises</title>
         <meta
           name="description"
           content="Request a call back from Shan Cool Enterprises for expert repair services in Noida. Quick and reliable support."

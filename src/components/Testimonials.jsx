@@ -9,22 +9,26 @@ import { Helmet } from 'react-helmet-async';
 
 function Testimonials() {
   const testimonials = [
-    {
-      name: 'Shahe Aalam',
-      feedback: 'Shan Cool Enterprises  fixed my A/C in no time! Professional service and great pricing. Highly recommend!',
-      rating: 5,
-    },
-    {
-      name: 'Shekh Eklakh',
-      feedback: 'My fridge was leaking, and they resolved the issue quickly. The team is skilled and courteous.',
-      rating: 4.8,
-    },
-    {
-      name: 'Shan',
-      feedback: 'Best repair service in Noida! My washing machine works like new after their service.',
-      rating: 4.9,
-    },
-  ];
+  {
+    name: 'Amazon',
+    feedback:
+      'Shan Cool Enterprises has been a reliable partner for our office A/C maintenance. Their prompt response, technical expertise, and competitive pricing make them a trusted service provider for our facility needs.',
+    rating: 5,
+  },
+  {
+    name: 'Zepto',
+    feedback:
+      'We experienced a critical issue with our refrigeration unit, and Shan Cool Enterprises resolved it swiftly. Their technicians are knowledgeable and professional, ensuring minimal downtime for our operations.',
+    rating: 4.8,
+  },
+  {
+    name: 'LIC',
+    feedback:
+      'Shan Cool Enterprises delivered outstanding service for our appliance repair requirements. Their team restored our washing machines to optimal condition with great efficiency. Highly dependable and professional.',
+    rating: 4.9,
+  },
+];
+
 
   return (
     <section className="py-20 bg-gradient-to-b from-gray-100 to-gray-50">

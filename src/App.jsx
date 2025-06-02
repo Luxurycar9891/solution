@@ -34,10 +34,10 @@ function AppWrapper() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Shan Enterprises Cool",
-            "url": "https://www.shanenterprisescool.com",
+            "url": "https://www.acrepairing.in",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://www.shanenterprisescool.com/search?q={search_term_string}",
+              "target": "https://www.acrepairing.in/search?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           })}
@@ -70,7 +70,7 @@ function AppWrapper() {
         <>
           <Footer />
           <motion.a
-          href="https://wa.me/917037918018"
+            href="https://wa.me/917037918018"
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg"
